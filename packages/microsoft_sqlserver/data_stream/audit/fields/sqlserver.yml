@@ -1,0 +1,10 @@
+- name: sqlserver.audit
+  type: group
+  description: >
+    All fields specific to the SQL Server Audit event are defined here
+
+  fields:
+    - name: server_principal_name
+      required: true
+      type: text
+      description: User name

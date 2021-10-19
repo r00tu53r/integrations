@@ -1,0 +1,43 @@
+format_version: 1.0.0
+name: sqlserver
+title: Microsoft SQL Server Audit Logs
+description: This Elastic integration collects audit logs for Microsoft SQL Server
+version: 0.0.1
+license: basic
+type: integration
+categories:
+  - datastore
+  - security
+release: experimental
+conditions:
+  kibana.version: '^7.15.0'
+screenshots:
+  - src: /img/metricbeat-windows-service.png
+    title: metricbeat windows service
+    size: 3142x1834
+    type: image/png
+icons:
+  - src: /img/logo_windows.svg
+    title: logo windows
+    size: 32x32
+    type: image/svg+xml
+policy_templates:
+  - name: sqlserver
+    title: SQL Server audit logs
+    description: Collect SQL Server audit logs
+    inputs:
+      - type: winlog
+        title: Collect SQL Server audit entries from event logs
+        description: Collect SQL Server audit entries from event logs
+        multi: false
+        vars:
+          - name: preserve_original_event
+            required: true
+            show_user: true
+            title: Preserve original event
+            description: Preserves a raw copy of the original event, added to the field `event.original`
+            type: bool
+            multi: false
+            default: false
+owner:
+  github: elastic/integrations
