@@ -8,9 +8,9 @@ processors:
     field: message
     target_field: event.original
     ignore_missing: true
-- set:
-    field: auth0.logs
-    copy_from: json
+- rename:
+    field: json
+    target_field: auth0.logs
 - date:
     field: auth0.logs.data.date
     formats:
