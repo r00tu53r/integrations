@@ -33,6 +33,144 @@ Uses the 1Password Events API to retrieve information about sign-in attempts. Ev
 | ecs.version | ECS version this event conforms to. `ecs.version` is a required field and must exist in all events. When querying across multiple indices -- which may conform to slightly different ECS versions -- this field lets integrations adjust to the schema version of the events. | keyword |
 | event.action | The action captured by the event. This describes the information in the event. It is more specific than `event.category`. Examples are `group-add`, `process-started`, `file-created`. The value is normally defined by the implementer. | keyword |
 | event.category | This is one of four ECS Categorization Fields, and indicates the second level in the ECS category hierarchy. `event.category` represents the "big buckets" of ECS categories. For example, filtering on `event.category:process` yields all events relating to process activity. This field is closely related to `event.type`, which is used as a subcategory. This field is an array. This will allow proper categorization of some events that fall in multiple categories. | keyword |
+| event.created | event.created contains the date/time when the event was first read by an agent, or by your pipeline. This field is distinct from @timestamp in that @timestamp typically contain the time extracted from the original event. In most situations, these two timestamps will be slightly different. The difference can be used to calculate the delay between your source generating an event, and the time when your agent first processed it. This can be used to monitor your agent's or pipeline's ability to keep up with your event source. In case the two timestamps are identical, @timestamp should be used. | date |
+| event.dataset | Event dataset | constant_keyword |
+| event.kind | This is one of four ECS Categorization Fields, and indicates the highest level in the ECS category hierarchy. `event.kind` gives high-level information about what type of information the event contains, without being specific to the contents of the event. For example, values of this field distinguish alert events from metric events. The value of this field can be used to inform how these kinds of events should be handled. They may warrant different retention, different access control, it may also help understand whether the data coming in at a regular interval or not. | keyword |
+| event.module | Event module | constant_keyword |
+| event.type | This is one of four ECS Categorization Fields, and indicates the third level in the ECS category hierarchy. `event.type` represents a categorization "sub-bucket" that, when used along with the `event.category` field values, enables filtering events down to a level appropriate for single visualization. This field is an array. This will allow proper categorization of some events that fall in multiple event types. | keyword |
+| input.type | Input type | keyword |
+| onepassword.client.app_name | The name of the 1Password app the item was accessed from | keyword |
+| onepassword.client.app_version | The version number of the 1Password app | keyword |
+| onepassword.client.platform_name | The name of the platform the item was accessed from | keyword |
+| onepassword.client.platform_version | The version of the browser or computer where the 1Password app is installed, or the CPU of the machine where the 1Password command-line tool is installed | keyword |
+| onepassword.item_uuid | The UUID of the item that was accessed | keyword |
+| onepassword.used_version | The version of the item that was accessed | integer |
+| onepassword.uuid | The UUID of the event | keyword |
+| onepassword.vault_uuid | The UUID of the vault the item is in | keyword |
+| os.name | Operating system name, without the version. | keyword |
+| os.version | Operating system version as a raw string. | keyword |
+| related.ip | All of the IPs seen on your event. | ip |
+| related.user | All the user names or other user identifiers seen on the event. | keyword |
+| source.as.number | Unique number allocated to the autonomous system. The autonomous system number (ASN) uniquely identifies each network on the Internet. | long |
+| source.as.organization.name | Organization name. | keyword |
+| source.geo.city_name | City name. | keyword |
+| source.geo.continent_name | Name of the continent. | keyword |
+| source.geo.country_iso_code | Country ISO code. | keyword |
+| source.geo.country_name | Country name. | keyword |
+| source.geo.location | Longitude and latitude. | geo_point |
+| source.geo.region_iso_code | Region ISO code. | keyword |
+| source.geo.region_name | Region name. | keyword |
+| source.ip | IP address of the source (IPv4 or IPv6). | ip |
+| tags | List of keywords used to tag each event. | keyword |
+| user.email | User email address. | keyword |
+| user.full_name | User's full name, if available. | keyword |
+| user.id | Unique identifier of the user. | keyword |
+
+
+An example event for `item_usages` looks as following:
+
+```json
+{
+    "@timestamp": "2021-08-30T18:57:42.484Z",
+    "agent": {
+        "ephemeral_id": "6f09b5bf-af2e-43e6-80ac-0c8e871ed0f2",
+        "hostname": "docker-fleet-agent",
+        "id": "38557dfa-555c-4cf0-9f45-99c98ad2acae",
+        "name": "docker-fleet-agent",
+        "type": "filebeat",
+        "version": "7.17.0"
+    },
+    "data_stream": {
+        "dataset": "1password.item_usages",
+        "namespace": "ep",
+        "type": "logs"
+    },
+    "ecs": {
+        "version": "8.0.0"
+    },
+    "elastic_agent": {
+        "id": "38557dfa-555c-4cf0-9f45-99c98ad2acae",
+        "snapshot": false,
+        "version": "7.17.0"
+    },
+    "event": {
+        "agent_id_status": "verified",
+        "category": [
+            "file"
+        ],
+        "created": "2022-03-07T00:48:14.042Z",
+        "dataset": "1password.item_usages",
+        "ingested": "2022-03-07T00:48:15Z",
+        "kind": "event",
+        "type": [
+            "access"
+        ]
+    },
+    "host": {
+        "name": "docker-fleet-agent"
+    },
+    "input": {
+        "type": "httpjson"
+    },
+    "onepassword": {
+        "client": {
+            "app_name": "1Password Browser Extension",
+            "app_version": "1109",
+            "platform_name": "Chrome",
+            "platform_version": "93.0.4577.62"
+        },
+        "item_uuid": "bvwmmwxisuca7wbehrbyqhag54",
+        "used_version": 1,
+        "uuid": "MCQODBBWJD5HISKYNP3HJPV2DV",
+        "vault_uuid": "jaqxqf5qylslqiitnduawrndc5"
+    },
+    "os": {
+        "name": "Android",
+        "version": "10"
+    },
+    "related": {
+        "ip": [
+            "1.1.1.1"
+        ],
+        "user": [
+            "OJQGU46KAPROEJLCK674RHSAY5",
+            "email@1password.com",
+            "Name"
+        ]
+    },
+    "source": {
+        "ip": "1.1.1.1"
+    },
+    "tags": [
+        "forwarded",
+        "1password-item_usages"
+    ],
+    "user": {
+        "email": "email@1password.com",
+        "full_name": "Name",
+        "id": "OJQGU46KAPROEJLCK674RHSAY5"
+    }
+}
+```
+
+### Item Usages
+
+Uses the 1Password Events API to retrieve information about items in shared vaults that have been modified, accessed, or used. Events include the name and IP address of the user who accessed the item, when it was accessed, and the vault where the item is stored.
+
+*Exported fields*
+
+**Exported fields**
+
+| Field | Description | Type |
+|---|---|---|
+| @timestamp | Event timestamp. | date |
+| data_stream.dataset | Data stream dataset. | constant_keyword |
+| data_stream.namespace | Data stream namespace. | constant_keyword |
+| data_stream.type | Data stream type. | constant_keyword |
+| ecs.version | ECS version this event conforms to. `ecs.version` is a required field and must exist in all events. When querying across multiple indices -- which may conform to slightly different ECS versions -- this field lets integrations adjust to the schema version of the events. | keyword |
+| event.action | The action captured by the event. This describes the information in the event. It is more specific than `event.category`. Examples are `group-add`, `process-started`, `file-created`. The value is normally defined by the implementer. | keyword |
+| event.category | This is one of four ECS Categorization Fields, and indicates the second level in the ECS category hierarchy. `event.category` represents the "big buckets" of ECS categories. For example, filtering on `event.category:process` yields all events relating to process activity. This field is closely related to `event.type`, which is used as a subcategory. This field is an array. This will allow proper categorization of some events that fall in multiple categories. | keyword |
+| event.created | event.created contains the date/time when the event was first read by an agent, or by your pipeline. This field is distinct from @timestamp in that @timestamp typically contain the time extracted from the original event. In most situations, these two timestamps will be slightly different. The difference can be used to calculate the delay between your source generating an event, and the time when your agent first processed it. This can be used to monitor your agent's or pipeline's ability to keep up with your event source. In case the two timestamps are identical, @timestamp should be used. | date |
 | event.dataset | Event dataset | constant_keyword |
 | event.kind | This is one of four ECS Categorization Fields, and indicates the highest level in the ECS category hierarchy. `event.kind` gives high-level information about what type of information the event contains, without being specific to the contents of the event. For example, values of this field distinguish alert events from metric events. The value of this field can be used to inform how these kinds of events should be handled. They may warrant different retention, different access control, it may also help understand whether the data coming in at a regular interval or not. | keyword |
 | event.module | Event module | constant_keyword |
@@ -74,11 +212,12 @@ An example event for `signin_attempts` looks as following:
 {
     "@timestamp": "2021-08-11T14:28:03.000Z",
     "agent": {
-        "ephemeral_id": "b72c7227-b270-431c-88d6-1a42d962ab97",
-        "id": "8a0c0293-badb-46e8-bcaf-4d82e41e65d0",
+        "ephemeral_id": "e20acbbb-ab81-4b58-bb49-8520639d96dd",
+        "hostname": "docker-fleet-agent",
+        "id": "38557dfa-555c-4cf0-9f45-99c98ad2acae",
         "name": "docker-fleet-agent",
         "type": "filebeat",
-        "version": "8.0.0"
+        "version": "7.17.0"
     },
     "data_stream": {
         "dataset": "1password.signin_attempts",
@@ -89,9 +228,9 @@ An example event for `signin_attempts` looks as following:
         "version": "8.0.0"
     },
     "elastic_agent": {
-        "id": "8a0c0293-badb-46e8-bcaf-4d82e41e65d0",
+        "id": "38557dfa-555c-4cf0-9f45-99c98ad2acae",
         "snapshot": false,
-        "version": "8.0.0"
+        "version": "7.17.0"
     },
     "event": {
         "action": "success",
@@ -99,9 +238,9 @@ An example event for `signin_attempts` looks as following:
         "category": [
             "authentication"
         ],
-        "created": "2022-02-16T21:40:06.467Z",
+        "created": "2022-03-07T00:48:50.546Z",
         "dataset": "1password.signin_attempts",
-        "ingested": "2022-02-16T21:40:09Z",
+        "ingested": "2022-03-07T00:48:51Z",
         "kind": "event",
         "outcome": "success",
         "type": [
@@ -147,141 +286,6 @@ An example event for `signin_attempts` looks as following:
     "tags": [
         "forwarded",
         "1password-signin_attempts"
-    ],
-    "user": {
-        "email": "email@1password.com",
-        "full_name": "Name",
-        "id": "OJQGU46KAPROEJLCK674RHSAY5"
-    }
-}
-```
-
-### Item Usages
-
-Uses the 1Password Events API to retrieve information about items in shared vaults that have been modified, accessed, or used. Events include the name and IP address of the user who accessed the item, when it was accessed, and the vault where the item is stored.
-
-*Exported fields*
-
-**Exported fields**
-
-| Field | Description | Type |
-|---|---|---|
-| @timestamp | Event timestamp. | date |
-| data_stream.dataset | Data stream dataset. | constant_keyword |
-| data_stream.namespace | Data stream namespace. | constant_keyword |
-| data_stream.type | Data stream type. | constant_keyword |
-| ecs.version | ECS version this event conforms to. `ecs.version` is a required field and must exist in all events. When querying across multiple indices -- which may conform to slightly different ECS versions -- this field lets integrations adjust to the schema version of the events. | keyword |
-| event.action | The action captured by the event. This describes the information in the event. It is more specific than `event.category`. Examples are `group-add`, `process-started`, `file-created`. The value is normally defined by the implementer. | keyword |
-| event.category | This is one of four ECS Categorization Fields, and indicates the second level in the ECS category hierarchy. `event.category` represents the "big buckets" of ECS categories. For example, filtering on `event.category:process` yields all events relating to process activity. This field is closely related to `event.type`, which is used as a subcategory. This field is an array. This will allow proper categorization of some events that fall in multiple categories. | keyword |
-| event.dataset | Event dataset | constant_keyword |
-| event.kind | This is one of four ECS Categorization Fields, and indicates the highest level in the ECS category hierarchy. `event.kind` gives high-level information about what type of information the event contains, without being specific to the contents of the event. For example, values of this field distinguish alert events from metric events. The value of this field can be used to inform how these kinds of events should be handled. They may warrant different retention, different access control, it may also help understand whether the data coming in at a regular interval or not. | keyword |
-| event.module | Event module | constant_keyword |
-| event.type | This is one of four ECS Categorization Fields, and indicates the third level in the ECS category hierarchy. `event.type` represents a categorization "sub-bucket" that, when used along with the `event.category` field values, enables filtering events down to a level appropriate for single visualization. This field is an array. This will allow proper categorization of some events that fall in multiple event types. | keyword |
-| input.type | Input type | keyword |
-| onepassword.client.app_name | The name of the 1Password app the item was accessed from | keyword |
-| onepassword.client.app_version | The version number of the 1Password app | keyword |
-| onepassword.client.platform_name | The name of the platform the item was accessed from | keyword |
-| onepassword.client.platform_version | The version of the browser or computer where the 1Password app is installed, or the CPU of the machine where the 1Password command-line tool is installed | keyword |
-| onepassword.item_uuid | The UUID of the item that was accessed | keyword |
-| onepassword.used_version | The version of the item that was accessed | integer |
-| onepassword.uuid | The UUID of the event | keyword |
-| onepassword.vault_uuid | The UUID of the vault the item is in | keyword |
-| os.name | Operating system name, without the version. | keyword |
-| os.version | Operating system version as a raw string. | keyword |
-| related.ip | All of the IPs seen on your event. | ip |
-| related.user | All the user names or other user identifiers seen on the event. | keyword |
-| source.as.number | Unique number allocated to the autonomous system. The autonomous system number (ASN) uniquely identifies each network on the Internet. | long |
-| source.as.organization.name | Organization name. | keyword |
-| source.geo.city_name | City name. | keyword |
-| source.geo.continent_name | Name of the continent. | keyword |
-| source.geo.country_iso_code | Country ISO code. | keyword |
-| source.geo.country_name | Country name. | keyword |
-| source.geo.location | Longitude and latitude. | geo_point |
-| source.geo.region_iso_code | Region ISO code. | keyword |
-| source.geo.region_name | Region name. | keyword |
-| source.ip | IP address of the source (IPv4 or IPv6). | ip |
-| tags | List of keywords used to tag each event. | keyword |
-| user.email | User email address. | keyword |
-| user.full_name | User's full name, if available. | keyword |
-| user.id | Unique identifier of the user. | keyword |
-
-
-An example event for `item_usages` looks as following:
-
-```json
-{
-    "@timestamp": "2021-08-30T18:57:42.484Z",
-    "agent": {
-        "ephemeral_id": "b3687a99-8907-497b-ba06-204e9664db73",
-        "id": "8a0c0293-badb-46e8-bcaf-4d82e41e65d0",
-        "name": "docker-fleet-agent",
-        "type": "filebeat",
-        "version": "8.0.0"
-    },
-    "data_stream": {
-        "dataset": "1password.item_usages",
-        "namespace": "ep",
-        "type": "logs"
-    },
-    "ecs": {
-        "version": "8.0.0"
-    },
-    "elastic_agent": {
-        "id": "8a0c0293-badb-46e8-bcaf-4d82e41e65d0",
-        "snapshot": false,
-        "version": "8.0.0"
-    },
-    "event": {
-        "agent_id_status": "verified",
-        "category": [
-            "file"
-        ],
-        "created": "2022-02-16T21:39:23.372Z",
-        "dataset": "1password.item_usages",
-        "ingested": "2022-02-16T21:39:24Z",
-        "kind": "event",
-        "type": [
-            "access"
-        ]
-    },
-    "host": {
-        "name": "docker-fleet-agent"
-    },
-    "input": {
-        "type": "httpjson"
-    },
-    "onepassword": {
-        "client": {
-            "app_name": "1Password Browser Extension",
-            "app_version": "1109",
-            "platform_name": "Chrome",
-            "platform_version": "93.0.4577.62"
-        },
-        "item_uuid": "bvwmmwxisuca7wbehrbyqhag54",
-        "used_version": 1,
-        "uuid": "MCQODBBWJD5HISKYNP3HJPV2DV",
-        "vault_uuid": "jaqxqf5qylslqiitnduawrndc5"
-    },
-    "os": {
-        "name": "Android",
-        "version": "10"
-    },
-    "related": {
-        "ip": [
-            "1.1.1.1"
-        ],
-        "user": [
-            "OJQGU46KAPROEJLCK674RHSAY5",
-            "email@1password.com",
-            "Name"
-        ]
-    },
-    "source": {
-        "ip": "1.1.1.1"
-    },
-    "tags": [
-        "forwarded",
-        "1password-item_usages"
     ],
     "user": {
         "email": "email@1password.com",
