@@ -1,7 +1,7 @@
 {
     "expected": [
         {
-            "@timestamp": "2021-11-09T04:30:39.882Z",
+            "@timestamp": "2021-11-08T20:30:39.882-08:00",
             "crowdstrike": {
                 "aidmaster": {
                     "AgentLoadFlags": "0",
@@ -46,7 +46,7 @@
             ]
         },
         {
-            "@timestamp": "2021-11-09T04:49:03.392Z",
+            "@timestamp": "2021-11-08T20:49:03.392-08:00",
             "crowdstrike": {
                 "aidmaster": {
                     "AgentLoadFlags": "1",
