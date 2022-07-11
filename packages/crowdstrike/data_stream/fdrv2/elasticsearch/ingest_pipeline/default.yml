@@ -1,0 +1,15 @@
+---
+description: Pipeline to process FDRv2 AID Master events
+processors:
+  - rename:
+      field: message
+      target_field: event.original
+  - json:
+      field: event.original
+      target_field: crowdstrike.aidmaster
+  - date:
+      field: crowdstrike.aidmaster.Time
+      timezone: "{{{crowdstrike.aidmaster.Timezone}}}"
+      formats:
+        - UNIX_MS
+        - UNIX

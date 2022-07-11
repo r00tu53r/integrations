@@ -1,0 +1,72 @@
+- name: observer.address
+  type: keyword
+- name: crowdstrike
+  type: group
+  fields:
+    - name: aidmaster
+      type: group
+      fields:
+        - name: AgentLoadFlags
+          type: keyword
+        - name: AgentLocalTime
+          type: keyword
+        - name: AgentTimeOffset
+          type: keyword
+        - name: AgentVersion
+          type: keyword
+        - name: BiosManufacturer
+          type: keyword
+        - name: BiosVersion
+          type: keyword
+        - name: ChassisType
+          type: keyword
+        - name: City
+          type: keyword
+        - name: Continent
+          type: keyword
+        - name: Country
+          type: keyword
+        - name: ComputerName
+          type: keyword
+        - name: ConfigBuild
+          type: keyword
+        - name: ConfigIDBuild
+          type: keyword
+        - name: FalconGroupingTags
+          type: keyword
+        - name: FirstSeen
+          type: keyword
+        - name: HostHiddenStatus
+          type: keyword
+        - name: MachineDomain
+          type: keyword
+        - name: OU
+          type: keyword
+        - name: PointerSize
+          type: keyword
+        - name: ProductType
+          type: keyword
+        - name: SensorGroupingTags
+          type: keyword
+        - name: ServicePackMajor
+          type: keyword
+        - name: SiteName
+          type: keyword
+        - name: SystemManufacturer
+          type: keyword
+        - name: SystemProductName
+          type: keyword
+        - name: Time
+          type: keyword
+        - name: Timezone
+          type: keyword
+        - name: Version
+          type: keyword
+        - name: aid
+          type: keyword
+        - name: aip
+          type: ip
+        - name: cid
+          type: keyword
+        - name: event_platform
+          type: keyword

@@ -1,10 +1,10 @@
-title: "Falcon Data Replicator"
+title: "Falcon Data Replicator (v2)"
 type: logs
 streams:
   - input: aws-s3
     template_path: aws-s3.yml.hbs
-    title: Falcon Data Replicator logs
-    description: Collect Falcon Data Replicator (FDR) logs from AWS S3
+    title: Falcon Data Replicator v2 AID Master Data
+    description: Collect Falcon Data Replicator (FDRv2) AID Master data from AWS S3
     vars:
       - name: access_key_id
         type: text
@@ -128,42 +128,6 @@ streams:
             });
             return evts;
           }
-      - name: tags
-        type: text
-        title: Tags
-        multi: true
-        show_user: false
-        default:
-          - forwarded
-          - crowdstrike-fdr
-      - name: processors
-        type: yaml
-        title: Processors
-        multi: false
-        required: false
-        show_user: false
-        description: >
-          Processors are used to reduce the number of fields in the exported event or to enhance the event with metadata. This executes in the agent before the logs are parsed. See [Processors](https://www.elastic.co/guide/en/beats/filebeat/current/filtering-and-enhancing-data.html) for details.
-
-  - input: logfile
-    title: Falcon Data Replicator logs
-    description: Collect Falcon Data Replicator logs using a log file
-    vars:
-      - name: paths
-        type: text
-        title: Paths
-        multi: true
-        default:
-          - /var/log/falcon_data_replicator.log
-        show_user: true
-      - name: preserve_original_event
-        required: true
-        show_user: true
-        title: Preserve original event
-        description: Preserves a raw copy of the original event, added to the field `event.original`
-        type: bool
-        multi: false
-        default: false
       - name: tags
         type: text
         title: Tags

@@ -1,0 +1,94 @@
+{
+    "expected": [
+        {
+            "@timestamp": "2021-11-09T04:30:39.882Z",
+            "crowdstrike": {
+                "aidmaster": {
+                    "AgentLoadFlags": "0",
+                    "AgentLocalTime": "1636073478",
+                    "AgentTimeOffset": "1680.425",
+                    "AgentVersion": "6.30.14203.0",
+                    "BiosManufacturer": "Apple Inc.",
+                    "BiosVersion": "1554.80.3.0.0 (iBridge: 18.16.14347.0.0,0)",
+                    "ChassisType": "Laptop",
+                    "City": "Santa Monica",
+                    "ComputerName": "userj-C01PP02PHL85",
+                    "ConfigBuild": "1007.4.0014404.1",
+                    "ConfigIDBuild": "14404",
+                    "Continent": "North America",
+                    "Country": "United States",
+                    "FalconGroupingTags": "FalconGroupingTags/UpdateGroup_26",
+                    "FirstSeen": "1621883267.0",
+                    "HostHiddenStatus": "Visible",
+                    "MachineDomain": "none",
+                    "OU": "none",
+                    "PointerSize": "none",
+                    "ProductType": "1",
+                    "SensorGroupingTags": "-",
+                    "ServicePackMajor": "none",
+                    "SiteName": "none",
+                    "SystemManufacturer": "Apple Inc.",
+                    "SystemProductName": "MacBookPro16,2",
+                    "Time": "1636432239.8820002",
+                    "Timezone": "America/Los_Angeles",
+                    "Version": "Big Sur (11.0)",
+                    "aid": "27cf8edf58b14ce1a898345abde023b3",
+                    "aip": "216.160.83.56",
+                    "cid": "165d4f2c3b754b153488152ec7ac90ac",
+                    "event_platform": "Mac"
+                }
+            },
+            "event": {
+                "original": "{\"AgentLoadFlags\":\"0\",\"AgentLocalTime\":\"1636073478\",\"AgentTimeOffset\":\"1680.425\",\"AgentVersion\":\"6.30.14203.0\",\"BiosManufacturer\":\"Apple Inc.\",\"BiosVersion\":\"1554.80.3.0.0 (iBridge: 18.16.14347.0.0,0)\",\"ChassisType\":\"Laptop\",\"City\":\"Santa Monica\",\"ComputerName\":\"userj-C01PP02PHL85\",\"ConfigBuild\":\"1007.4.0014404.1\",\"ConfigIDBuild\":\"14404\",\"Continent\":\"North America\",\"Country\":\"United States\",\"FalconGroupingTags\":\"FalconGroupingTags/UpdateGroup_26\",\"FirstSeen\":\"1621883267.0\",\"HostHiddenStatus\":\"Visible\",\"MachineDomain\":\"none\",\"OU\":\"none\",\"PointerSize\":\"none\",\"ProductType\":\"1\",\"SensorGroupingTags\":\"-\",\"ServicePackMajor\":\"none\",\"SiteName\":\"none\",\"SystemManufacturer\":\"Apple Inc.\",\"SystemProductName\":\"MacBookPro16,2\",\"Time\":\"1636432239.8820002\",\"Timezone\":\"America/Los_Angeles\",\"Version\":\"Big Sur (11.0)\",\"aid\":\"27cf8edf58b14ce1a898345abde023b3\",\"aip\":\"216.160.83.56\",\"cid\":\"165d4f2c3b754b153488152ec7ac90ac\",\"event_platform\":\"Mac\"}"
+            },
+            "tags": [
+                "preserve_original_event"
+            ]
+        },
+        {
+            "@timestamp": "2021-11-09T04:49:03.392Z",
+            "crowdstrike": {
+                "aidmaster": {
+                    "AgentLoadFlags": "1",
+                    "AgentLocalTime": "1636128079",
+                    "AgentTimeOffset": "26830.096",
+                    "AgentVersion": "6.29.14304.0",
+                    "BiosManufacturer": "Dell Inc.",
+                    "BiosVersion": "1.6.1",
+                    "ChassisType": "Notebook",
+                    "City": "Orinda",
+                    "ComputerName": "userk-johnm",
+                    "ConfigBuild": "1007.3.0014304.1",
+                    "ConfigIDBuild": "14304",
+                    "Continent": "North America",
+                    "Country": "United States",
+                    "FalconGroupingTags": "-",
+                    "FirstSeen": "1628299434.0",
+                    "HostHiddenStatus": "Visible",
+                    "MachineDomain": "none",
+                    "OU": "none",
+                    "PointerSize": "8",
+                    "ProductType": "1",
+                    "SensorGroupingTags": "-",
+                    "ServicePackMajor": "0",
+                    "SiteName": "none",
+                    "SystemManufacturer": "Dell Inc.",
+                    "SystemProductName": "Latitude 7420",
+                    "Time": "1636433343.3920002",
+                    "Timezone": "America/Los_Angeles",
+                    "Version": "Windows 10",
+                    "aid": "1287fb3c9a2308fbbe7212dc4498e80c",
+                    "aip": "81.2.69.144",
+                    "cid": "165d4f2c3b754b153488152ec7ac90ac",
+                    "event_platform": "Win"
+                }
+            },
+            "event": {
+                "original": "{\"AgentLoadFlags\":\"1\",\"AgentLocalTime\":\"1636128079\",\"AgentTimeOffset\":\"26830.096\",\"AgentVersion\":\"6.29.14304.0\",\"BiosManufacturer\":\"Dell Inc.\",\"BiosVersion\":\"1.6.1\",\"ChassisType\":\"Notebook\",\"City\":\"Orinda\",\"ComputerName\":\"userk-johnm\",\"ConfigBuild\":\"1007.3.0014304.1\",\"ConfigIDBuild\":\"14304\",\"Continent\":\"North America\",\"Country\":\"United States\",\"FalconGroupingTags\":\"-\",\"FirstSeen\":\"1628299434.0\",\"HostHiddenStatus\":\"Visible\",\"MachineDomain\":\"none\",\"OU\":\"none\",\"PointerSize\":\"8\",\"ProductType\":\"1\",\"SensorGroupingTags\":\"-\",\"ServicePackMajor\":\"0\",\"SiteName\":\"none\",\"SystemManufacturer\":\"Dell Inc.\",\"SystemProductName\":\"Latitude 7420\",\"Time\":\"1636433343.3920002\",\"Timezone\":\"America/Los_Angeles\",\"Version\":\"Windows 10\",\"aid\":\"1287fb3c9a2308fbbe7212dc4498e80c\",\"aip\":\"81.2.69.144\",\"cid\":\"165d4f2c3b754b153488152ec7ac90ac\",\"event_platform\":\"Win\"}"
+            },
+            "tags": [
+                "preserve_original_event"
+            ]
+        }
+    ]
+}
